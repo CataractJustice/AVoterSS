@@ -43,6 +43,13 @@
 <div class="VoteSend" id="VoteSend">Vote!</div>
 <div>
 	<script>
+		(()=>{
+		if(!localStorage.started) 
+		{
+			window.history.pushState(null, null, "/");
+			return;
+		}
+
 		let displayedCharacter = "none";
 		fetch("/api/r").then(res=>{res.text().then((char)=>{
 	
@@ -81,5 +88,6 @@
 				window.location = '/vote';
 			}, 100);
 		}
+	})();
 	</script>
 </div>

@@ -1,5 +1,17 @@
 <div>
 	<auto-title title="Welcome"></auto-title>
-	<a href="/vote">Click here to start</a>
-	<script>r()</script>
+	<a href="/vote" id="StartOnClick">Click here to start</a>
+
+	<script>
+		StartOnClick.onclick = ()=>
+		{
+			localStorage.started = "true";
+			window.history.pushState(null, null, "/vote");
+			return false;
+		}
+		if(localStorage.started == "true") 
+		{
+			window.history.pushState(null, null, "/vote");
+		}
+	</script>
 </div>
