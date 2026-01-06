@@ -6,12 +6,23 @@ const crypto = require('crypto')
 
 const salt = "4401";
 
+
+if(!fs.existsSync('../front/media/chars')) 
+{
+	fs.mkdirSync('../front/media/chars');
+}
+if(!fs.existsSync('./votes')) 
+{
+	fs.mkdirSync('./votes');
+}
+
 const charDirs = fs.readdirSync("../front/media/chars", { withFileTypes: true })
 .filter(dirent => dirent.isDirectory())
 .map(dirent => dirent.name);
 
 const app = express();
 app.use(express.json());
+
 
 app.get('{*any}', (req, res, next)=>{
 	if(req.path.startsWith('/favicon.ico') || req.path.startsWith('/media') || req.path.startsWith('/src') || req.path.startsWith('/styles') || req.path.startsWith('/html') || req.path.startsWith('/api')) 
