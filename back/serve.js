@@ -102,6 +102,20 @@ function getUserId(req)
 	return cookieId;
 }
 
+function voteValue(val) 
+{
+	const minVal = 0;
+	const maxVal = 100;
+	const valN = parseInt(val);
+	if(typeof valN === "number") 
+	{
+		if(valN > maxVal) return NaN;
+		if(valN < minVal) return NaN;
+		return valN;
+	}
+	return NaN;
+}
+
 app.post('/api/v', async(req,res)=>{
 	const userId = getUserId(req);
 	if(!userId) 
@@ -113,7 +127,17 @@ app.post('/api/v', async(req,res)=>{
 	const voterDataFilepath = `./votes/${userId}.json`;
 	const voterData = JSON.parse(fs.readFileSync(voterDataFilepath));
 	
-	voterData[req.body.char] = {color: req.body.color, hair: req.body.hair, tight: req.body.tight};
+	const colorVal = voteValue(req.body.color);
+	const hairVal = voteValue(req.body.hair);
+	const tightVal = voteValue(req.body.tight);
+
+	if(isNaN(colorVal) || isNaN(hairVal) || isNaN(tightVal)) 
+	{
+		res.send("ok");
+		return;
+	}
+
+	voterData[req.body.char] = {color: colorVal, hair: hairVal, tight: tightVal};
 
 	fs.writeFileSync(voterDataFilepath, JSON.stringify(voterData));
 	res.send("ok");
