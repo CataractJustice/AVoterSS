@@ -22,7 +22,7 @@ body
 	display: flex;
 	flex-flow: column;
 	border: dashed rgb(158, 54, 106) 4px;
-	margin: 64px;
+	margin: 32px;
 	max-width: 320px;
 }
 .CharCardTitleContainer 
@@ -69,4 +69,10 @@ body
 .Sliders input 
 {
 	width: 320px;
+}
+
+.StatsContainer 
+{
+	display: flex;
+	flex-flow: row;
 }

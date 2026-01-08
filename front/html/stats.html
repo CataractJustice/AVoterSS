@@ -1,0 +1,23 @@
+<div>
+	<auto-tile title="Final Stats"></auto-tile>
+	<div>
+		Final Stats
+	</div>
+	<div id="StatsContainer">
+
+	</div>
+	<script>
+		const parser = new DOMParser();
+		(async ()=>{
+			window.cachedStats = await(await fetch('/api/stats')).json();
+			for(let char in cachedStats) 
+			{
+				const dom = parser.parseFromString(`<char-stat-card character="${char}"></char-stat-card>`, 'text/html');
+				while(dom.body.firstChild) 
+				{
+					StatsContainer.append(dom.body.firstChild);
+				}
+			}
+		})();
+	</script>
+</div>
