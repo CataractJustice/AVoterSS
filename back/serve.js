@@ -130,6 +130,13 @@ app.post('/api/v', async(req,res)=>{
 	const colorVal = voteValue(req.body.color);
 	const hairVal = voteValue(req.body.hair);
 	const tightVal = voteValue(req.body.tight);
+	const charExists = false;
+	for(const char of charDirs) if(char == req.body.char) charExists = true;
+	if(!charExists) 
+	{
+		res.send("ok 1");
+		return;	
+	}
 
 	if(isNaN(colorVal) || isNaN(hairVal) || isNaN(tightVal)) 
 	{
@@ -138,7 +145,7 @@ app.post('/api/v', async(req,res)=>{
 	}
 
 	voterData[req.body.char] = {color: colorVal, hair: hairVal, tight: tightVal};
-
+	
 	fs.writeFileSync(voterDataFilepath, JSON.stringify(voterData));
 	res.send("ok");
 });
