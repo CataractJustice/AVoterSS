@@ -1,5 +1,6 @@
 back/votes/*
 front/media/chars/*
+back/statscache.json
 # Logs
 logs
 *.log

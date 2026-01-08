@@ -71,8 +71,11 @@ body
 	width: 320px;
 }
 
-.StatsContainer 
+#StatsContainer 
 {
 	display: flex;
 	flex-flow: row;
+	align-items: baseline;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
