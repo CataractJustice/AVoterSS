@@ -268,15 +268,67 @@ body {
 }
 
 /* Stats */
+.StatsTitle {
+	font-size: clamp(1.5rem, 6vw, 3rem);
+	font-weight: bolder;
+	margin-bottom: 32px;
+	text-shadow: 0 0 10px rgba(158, 54, 106, 0.8);
+	padding: 0 16px;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
 #StatsContainer {
 	display: flex;
 	flex-flow: row;
-	align-items: baseline;
-	justify-content: space-around;
+	align-items: flex-start;
+	justify-content: center;
 	flex-wrap: wrap;
 	width: 100%;
-	gap: 16px;
-	max-width: 1400px;
+	max-width: 100%;
+	padding: 0 16px;
+	gap: 12px;
+}
+
+char-stat-card {
+	display: flex;
+	flex-flow: column;
+	min-width: 150px;
+	max-width: 200px;
+	width: 100%;
+	transition: all 0.3s ease;
+	flex-shrink: 0;
+}
+
+char-stat-card.CharCard {
+	width: 400px;
+}
+
+.GraphContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 6px;
+	margin: 4px;
+	gap: 4px;
+	width: 100%;
+}
+
+.GraphTitle {
+	font-size: clamp(1rem, 4vw, 1.5rem);
+	font-weight: bold;
+	text-shadow: 0 0 10px rgba(158, 54, 106, 0.8);
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+
+.GraphContainer canvas {
+	border: 16px solid transparent;
+	border-image: url("/media/border2.png") 16 round;
+	background: black;
+	border-radius: 4px;
+	width: auto;
+	height: auto;
 }
 
 /* End Page */

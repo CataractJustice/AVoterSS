@@ -77,17 +77,15 @@ class CharStatCard extends HTMLElement
 		super();
 		this.titleContainer = document.createElement("div");
 		this.imageContainer = document.createElement("div");
-		this.textContainer = document.createElement("div");
 		this.image = document.createElement("img");
 		this.titleContainer.classList.add("CharCardTitleContainer");
 		this.imageContainer.classList.add("CharCardImageContainer");
-		this.textContainer.classList.add("CharCardTextContainer");
 		this.classList.add("CharCard");
 		this.image.classList.add("CharImage");
 
 		
 		this.imageContainer.append(this.image);
-		this.append(this.titleContainer, this.imageContainer, this.textContainer);
+		this.append(this.titleContainer, this.imageContainer);
 		
 		this.character = this.attributes.character.value;
 		this.image.src = `/media/chars/${this.character}/pic.png`;
@@ -96,13 +94,12 @@ class CharStatCard extends HTMLElement
 		(async()=>{
 			const info = JSON.parse(await (await fetch(`/media/chars/${this.character}/info.json`)).text());
 			this.titleContainer.innerText = info.title;
-			this.textContainer.innerText = info.description;
 		})();
 
 		const charStats = cachedStats[this.character];
 		console.log(charStats);
 		this.colorGraph = newGraph(charStats.color, 320, 240, "black", "#881144", "Color graph");
-		this.hairGraph = newGraph(charStats.hair, 320, 240, "black", "#881144", "Hair graph");
+		this.hairGraph = newGraph(charStats.hair, 320, 240, "black", "#881144", "Hairiness graph");
 		this.tightGraph = newGraph(charStats.tight, 320, 240, "black", "#881144", "Tightness graph");
 		this.append(this.colorGraph, this.hairGraph, this.tightGraph);
 	}
